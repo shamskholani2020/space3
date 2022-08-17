@@ -110,7 +110,7 @@ const Dialogg = (props) => {
  export const ProjectCard = (props)=>{
     return (
         <>
-         <Card className="w-100 text-left">
+         <Card className="md:w-100 w-full text-left">
       
       <CardBody className="text-left">
         <div className='flex justify-center items-center flex-col-reverse md:flex-row-reverse gap-5'>

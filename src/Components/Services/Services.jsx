@@ -41,7 +41,7 @@ export default function Services() {
     className='w-full h-screen bg-white '
     >
         
-        <Tabs value="html" className="px-10 mt-5">
+        <Tabs value="html" className="px-2 md:px-10 mt-5">
         <TabsHeader className='bg-gray-100' value='Flutter'>
             <Tab key='Flutter' value="Flutter">Flutter</Tab>
             <Tab key='Web' value="Web">Web</Tab>
