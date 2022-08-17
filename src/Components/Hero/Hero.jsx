@@ -1,11 +1,33 @@
-import React from 'react'
+import React,{useState, useEffect, useTransition} from 'react'
 import Typed from 'react-typed'
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import { Button, Typography } from '@material-tailwind/react';
+import { Trans, useTranslation } from 'react-i18next';
+
+
 
 export default function Hero() {
+
+    const [t,i18n] = useTranslation();   
+    
+    const changeLanguage = ()=>{
+    var language = i18n.language
+      i18n.changeLanguage(language === 'en' ? 'ar' : 'en');
+    };
+    
+  
+    
+
+
+
+  
+    const html = document.getElementById("hh");
+    html.dir = i18n.dir();
+       
   return (
     <>
+      
+
     <div
     className='
     h-[800px]
@@ -23,8 +45,12 @@ export default function Hero() {
     '
     >
     <div className='flex justify-start items-start flex-col md:w-2/4 w-full'>
-    <Typed className='text-blue-100' strings={[
-      "New short sentense",
+    <Typed className='text-blue-100 ' strings={[
+    
+      t('hero.subtitle1'),
+      t('hero.subtitle2'),
+      t('hero.subtitle3'),
+    
     ]} 
     typeSpeed={40}
     backSpeed={20}
@@ -34,18 +60,17 @@ export default function Hero() {
     <Typed
     className='text-white font-semibold text-[4rem]'
       strings={[
-            "Mobile DEV",
-            "Web Developer",
-            "UI UX Desinger"
+          t('hero.title1'),
+      t('hero.title2'),
+      t('hero.title3'),
             
           ]}
           typeSpeed={220}
           backSpeed={100}
           loop
         />
-    <Typography variant="lead" color="white" className='mt-5' >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus libero sit quasi ducimus. a quae non deserunt laudantium doloremque doloribus, fugiat mollitia dolor in vitae eveniet cupiditate? Dolores, voluptas cum.</Typography>
+    <Typography variant="lead" color="white" className='mt-5' >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus libero sit quasi ducimus. a quae non deserunt laudantium.</Typography>
     
-
 
     <Button variant='gradient' size='2xl' className=' 
     w-full
@@ -55,12 +80,15 @@ export default function Hero() {
     mt-10
     text-white
     font-semibold
-    
+
     
 
     
     '
     color='indigo'
+    onClick={()=>{
+      changeLanguage('ar');
+    }}
     >CONTACT</Button>
     </div>
     <div className=' w-2/4
@@ -77,7 +105,7 @@ export default function Hero() {
   src="https://assets10.lottiefiles.com/packages/lf20_wbwoxby3.json"
   className='w-full h-full '
 >
-  <Controls visible={false} buttons={['play', 'repeat', 'frame', 'debug']} />
+  
 </Player>
       
     </div>

@@ -1,0 +1,18 @@
+{
+  "hero":{
+    "title1":"UI UX",
+    "title2":"Apps Development",
+    "title3":"Web Design",
+    "subtitle1":"talented designer",
+    "subtitle2":"perfect developers",
+    "subtitle3":"clean code"
+  },
+  "nav":{
+    "home":"Home",
+    "about":"About",
+    "services":"Services",
+    "projects":"Projects",
+    "contact":"Contact"
+  
+  }
+}

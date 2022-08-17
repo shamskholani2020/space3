@@ -1,6 +1,9 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const NavBar = () => {
+  const [i] = useTranslation();
+  const menu = ["home", "projects", "about", "contact"];
   return (
     <>
       <div
@@ -24,9 +27,10 @@ const NavBar = () => {
 
       "
       >
-        <a
-          href=""
-          className="
+        {menu.map((item, index) => (
+          <a
+            href=""
+            className="
         text-white
         text-sm
         hover:font-bold
@@ -36,45 +40,10 @@ const NavBar = () => {
         transition-all ease-in-out duration-300
 
         "
-        >
-          HOME
-        </a>
-        <a
-          href=""
-          className="text-white
-        text-sm
-        hover:font-bold
-        hover:text-indigo-100
-        
-        hover:text-lg
-        transition-all ease-in-out duration-300"
-        >
-          PROJECT
-        </a>
-        <a
-          href=""
-          className="text-white
-        text-sm
-        hover:font-bold
-        hover:text-indigo-100
-        
-        hover:text-lg
-        transition-all ease-in-out duration-300"
-        >
-          ABOUT
-        </a>
-        <a
-          href=""
-          className="text-white
-        text-sm
-        hover:font-bold
-        hover:text-indigo-100
-        
-        hover:text-lg
-        transition-all ease-in-out duration-300"
-        >
-          CONTACT
-        </a>
+          >
+            {i("nav." + item)}
+          </a>
+        ))}
       </div>
       <div
         className="

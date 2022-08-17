@@ -1,3 +1,4 @@
+import { Player } from '@lottiefiles/react-lottie-player';
 import { Button, Tab, TabPanel, Tabs, TabsBody, TabsHeader,Card,CardHeader,CardBody,CardFooter,  } from '@material-tailwind/react'
 import React from 'react'
 import Dialogg, { ProjectCard } from '../Components'
@@ -30,16 +31,37 @@ export default function Services() {
 
         }
     ];
+    const height = projects.length * 800;
+    // detect language of the browser
+    const language = navigator.language;
+    
+
+
+    
+
+    
   return (
    <>
+   <div className={`h-[${height}px]`}>
+
     <div className='w-full  bg-white flex flex-col justify-center items-center mt-20'
     >
-    <h1  className='text-center text-gray-900 text-4xl' >Our Projects</h1>
+         <Player
+  autoplay
+  loop
+  src="https://assets9.lottiefiles.com/private_files/lf30_m3fdhwvc.json"
+  className='w-full h-52  '
+></Player>
+    <h1  className='text-center text-gray-900 text-4xl mt-5' >Our Projects</h1>
     <h4  className='text-center text-gray-400 text-md my-5' >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi magnam deleniti.</h4>
     </div>
     <div
-    className='w-full h-screen bg-white '
+    className='w-full  bg-white mb-20'
     >
+        <h1>
+            {language === 'en-GB' ? 'المشاريع' : 'Projects'}
+             ?????? {language}
+        </h1>
         
         <Tabs value="html" className="px-2 md:px-10 mt-5">
         <TabsHeader className='bg-gray-100' value='Flutter'>
@@ -50,9 +72,9 @@ export default function Services() {
         <TabsBody
         className='w-full h-full'
         
-         animate={{
-          mount: { y: 0 },
-          unmount: { y: 1000 },
+        animate={{
+            mount: { y: 0 },
+            unmount: { y: 1000 },
         }}
         >
             
@@ -61,9 +83,9 @@ export default function Services() {
                     {
                         projects.map((project, index) => (
                             <ProjectCard key={index} {...project} />
-                        ))
-
-                    }
+                            ))
+                            
+                        }
                     
                    
             </div>
@@ -77,6 +99,7 @@ export default function Services() {
         </TabsBody>
         </Tabs>
     </div>
+                        </div>
    </>
   )
 }
