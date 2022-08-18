@@ -34,12 +34,7 @@ export default function Services() {
     const height = projects.length * 800;
     // detect language of the browser
     const language = navigator.language;
-    
 
-
-    
-
-    
   return (
    <>
    <div className={`h-[${height}px]`}>

@@ -8,21 +8,35 @@ import { Trans, useTranslation } from 'react-i18next';
 
 export default function Hero() {
 
-    const [t,i18n] = useTranslation();   
+  
+  const [t,i18n] = useTranslation();   
+  const language = localStorage.getItem('language') || navigator.language ;
+  
+  const changeLanguage = ()=>{
+    i18n.changeLanguage(language === 'en' ? 'ar' : 'en');
+    localStorage.setItem('language',i18n.language);
     
-    const changeLanguage = ()=>{
-    var language = i18n.language
-      i18n.changeLanguage(language === 'en' ? 'ar' : 'en');
+    
+  };
+  const html = document.getElementById("hh");
+  html.dir = language === 'en' ? 'ltr' : 'rtl';
+  
+  document.getElementById("body").style.fontFamily = language === 'en' ? 'Poppins' : 'Cairo';
+  
+  
+  
+  const en = {
+      fontFamily: language === 'en' ? 'Poppins' : 'Cairo',
     };
+
+
+
     
+
+
+
   
     
-
-
-
-  
-    const html = document.getElementById("hh");
-    html.dir = i18n.dir();
        
   return (
     <>
@@ -69,7 +83,7 @@ export default function Hero() {
           backSpeed={100}
           loop
         />
-    <Typography variant="lead" color="white" className='mt-5' >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus libero sit quasi ducimus. a quae non deserunt laudantium.</Typography>
+    <Typography variant="lead" color="white" className='mt-5' style={en} >{t('hero.shortDesc')}</Typography>
     
 
     <Button variant='gradient' size='2xl' className=' 
@@ -86,10 +100,11 @@ export default function Hero() {
     
     '
     color='indigo'
+    style={en}
     onClick={()=>{
       changeLanguage('ar');
     }}
-    >CONTACT</Button>
+    >{t('hero.cta')}</Button>
     </div>
     <div className=' w-2/4
      h-full

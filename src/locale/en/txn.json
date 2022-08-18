@@ -5,7 +5,9 @@
     "title3":"Web Design",
     "subtitle1":"talented designer",
     "subtitle2":"perfect developers",
-    "subtitle3":"clean code"
+    "subtitle3":"clean code",
+    "shortDesc":"lorem ipsum dollar accpet for this short term design sprint we can start working on the next sprint",
+    "cta":"Get Started"
   },
   "nav":{
     "home":"Home",

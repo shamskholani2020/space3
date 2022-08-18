@@ -15,13 +15,15 @@ const resources = {
   },
 };
 
+const language = localStorage.getItem("language") || "en";
+
 i18n
   .use(initReactI18next)
   .use(Backend)
   .use(LanguageDetector)
   .init({
     resources,
-    lng: "en",
+    lng: language,
 
     interpolation: {
       escapeValue: false,
