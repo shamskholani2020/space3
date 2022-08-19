@@ -15,6 +15,15 @@
     "services":"Services",
     "projects":"Projects",
     "contact":"Contact"
-  
+  },
+  "projects":{
+    "title":"Our Projects",
+    "subtitle":"We have a lot of projects that we are proud of and we are always looking for new ones",
+    "cta":"Check Out"
+  },
+  "dialog":{
+    "main":"View Full Project",
+    "second":"Stay Here"
   }
+  
 }

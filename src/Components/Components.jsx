@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import {  useState } from "react";
 import {
   Button,
@@ -9,23 +10,32 @@ import {
   
   Card,CardHeader,CardBody,CardFooter,
 } from "@material-tailwind/react";
+import { t } from 'i18next';
 
 
 const Dialogg = (props) => {
-      const [size, setSize] = useState(null);
- 
+  const [size, setSize] = useState(null);
+  const language = localStorage.getItem('language') || navigator.language ;
+  const en = {
+    fontFamily: language === 'en' ? 'Poppins' : 'Cairo',
+
+  }
+  const [t]= useTranslation();
   const handleOpen = (value) => setSize(value);
     return (
        <>
        
      
-        <Button onClick={() => handleOpen("xxl")} variant="gradient" >
-          Check Out
+        <Button onClick={() => handleOpen("xxl")} variant="gradient" style={{
+          fontFamily:en.fontFamily,
+        }} >
+          {t('projects.cta')}
         </Button>
      
     
 
       <Dialog
+      dir="ltr"
         open={
           size === "xs" ||
           size === "sm" ||
@@ -45,13 +55,17 @@ const Dialogg = (props) => {
         
         <DialogBody >
         <div className='flex flex-col-reverse lg:flex-row-reverse justify-center items-center '>
-        <div className='flex flex-col justify-start items-start m-5'>
-        <h2  className="mb-2 text-indigo-800 ">{props.title}</h2>
+        <div className={`flex flex-col ${language == 'en' ? 'justify-start' : "justify-end"} ${language == 'en' ? 'items-start' : "items-end"}  m-5`}>
+        <h2  className="mb-3 text-indigo-800 text-4xl" style={{
+          fontFamily:en.fontFamily,
+        }}>{language == 'en'? props.title : props.titleAr}</h2>
         <p  className='text-gray-500 mb-10 text-md'>{props.date}</p>
 
-        <p className='text-md text-gray-500'>{props.description}</p>
+        <p className={`text-md text-gray-500  ${language == 'en' ? "text-left" : "text-right"}`} style={{
+          fontFamily:en.fontFamily,
+        }}>{language == 'en'? props.description : props.descriptionAr}</p>
         
-        <div className='flex flex-row justify-around items-center gap-5 mt-5'>
+        <div className='flex flex-row justify-around items-center gap-5 mt-3'>
           
          {/* <Button color='gray' variant='text'> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
   <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
@@ -81,21 +95,27 @@ const Dialogg = (props) => {
           <Button
             variant="text"
             color="indigo"
+            style={{
+          fontFamily:en.fontFamily,
+        }} 
             onClick={() => handleOpen(null)}
             className="mr-1"
           >
-            <span>Stay Here</span>
+            <span>{t("dialog.second")}</span>
           </Button>
           <Button
             variant="gradient"
             color="blue"
+            style={{
+          fontFamily:en.fontFamily,
+        }} 
             onClick={() =>{
                 // launch url
                 window.open(props.url, '_blank');
 
             }}
           >
-            <span>View On Behance</span>
+            <span>{t("dialog.main")}</span>
           </Button>
         </DialogFooter>
       </Dialog>
@@ -108,30 +128,36 @@ const Dialogg = (props) => {
 
 
  export const ProjectCard = (props)=>{
+  const language = localStorage.getItem('language') || navigator.language;
+  const en = {
+    fontFmaily: language ==="en"? 'Poppins':"Cairo",
+  }
     return (
         <>
-         <Card className="md:w-100 w-full text-left">
+         <Card className="md:w-100 w-full text-left" style={{
+          fontFamily: en.fontFmaily,
+         }}>
       
-      <CardBody className="text-left">
-        <div className='flex justify-center items-center flex-col-reverse md:flex-row-reverse gap-5'>
+      <CardBody className={`${language==='en' ? 'text-left' : 'text-right'}`}>
+        <div className={`flex justify-center items-center flex-col-reverse ${language === 'en'?  "md:flex-row-reverse" : " md:flex-row"} gap-5`}>
             <div className='flex flex-col '>
-                <h4  className="mb-2 text-gray-900 text-2xl font-semibold" >
-          {props.title}
+                <h4  className="mb-2 text-gray-900 text-2xl font-semibold" style={en}>
+           {language === "en"? props.title : props.titleAr}
         </h4>
         <div className='max-h-[80px] overflow-auto'>
 
         < p6>
-          {props.description}
+          {language === 'en'? props.description : props.descriptionAr}
         </p6>
         </div>
             </div>
-            <img className='w-full object-cover h-[200px] rounded-lg'  src={props.image}/>
+            <img className='w-full md:w-[270px] object-cover h-[200px] rounded-lg'  src={props.image}/>
         </div>
       </CardBody>
-      <CardFooter divider className="flex items-center justify-between py-3">
+      <CardFooter divider className="flex items-center justify-between py-3" dir='lrt'>
         <p className='text-sm'>{props.date}</p>
           
-        <Dialogg title={props.title} description={props.description} date={props.date} image={props.image} url={props.url}/>
+        <Dialogg title={props.title} description={props.description} date={props.date} image={props.image} url={props.url} titleAr={props.titleAr} descriptionAr={props.descriptionAr}/>
       </CardFooter>
     </Card>
         </>
